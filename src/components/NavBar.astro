@@ -1,8 +1,10 @@
 ---
+const BASE = import.meta.env.BASE_URL;
+
 const links = [
-  { href: "Portfolio/", label: "Home" },
-  { href: "Portfolio/skills", label: "Skills" },
-  { href: "Portfolio/contact", label: "My Information" }
+  { href: BASE, label: "Home" },
+  { href: `${BASE}/skills`, label: "Skills" },
+  { href: `${BASE}/contact`, label: "My Information" }
 ];
 ---
 
@@ -192,7 +194,8 @@ const links = [
   });
 
   // Highlight active page link
-  const currentPath = window.location.pathname;
+  const BASE = import.meta.env.BASE_URL;
+  const currentPath = window.location.pathname.replace(BASE, "");
   navLinks?.querySelectorAll("a").forEach(link => {
     if (link.getAttribute("href") === currentPath) {
       link.setAttribute("aria-current", "page");

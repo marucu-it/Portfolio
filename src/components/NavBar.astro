@@ -1,10 +1,8 @@
 ---
-const BASE = import.meta.env.BASE_URL;
-
 const links = [
-  { href: BASE, label: "Home" },
-  { href: `${BASE}skills`, label: "Skills" },
-  { href: `${BASE}contact`, label: "My Information" }
+  { href: "Portfolio/", label: "Home" },
+  { href: "Portfolio/skills", label: "Skills" },
+  { href: "Portfolio/contact", label: "My Information" }
 ];
 ---
 
@@ -181,25 +179,23 @@ const links = [
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
 
-  if (hamburger && navLinks) {
-    hamburger.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("mobile-open");
-      hamburger.setAttribute("aria-expanded", String(isOpen));
-    });
+  hamburger?.addEventListener("click", () => {
+    const isOpen = navLinks?.classList.toggle("mobile-open");
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+  });
 
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("mobile-open");
-        hamburger.setAttribute("aria-expanded", "false");
-      });
+  navLinks?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("mobile-open");
+      hamburger?.setAttribute("aria-expanded", "false");
     });
+  });
 
-    const currentPath = window.location.pathname;
-
-    navLinks.querySelectorAll("a").forEach((link) => {
-      if (link.getAttribute("href") === currentPath) {
-        link.setAttribute("aria-current", "page");
-      }
-    });
-  }
+  // Highlight active page link
+  const currentPath = window.location.pathname;
+  navLinks?.querySelectorAll("a").forEach(link => {
+    if (link.getAttribute("href") === currentPath) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
 </script>

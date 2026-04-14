@@ -8,32 +8,53 @@ const contact = {
 
 <section id="contact">
   <div class="contact-inner">
-
     <div class="contact-header anim">
       <span class="section-label">Contact</span>
       <h2 class="anim anim-delay-1">Let's work <em>together.</em></h2>
       <p class="subtitle anim anim-delay-2">
-        Have a project in mind or just want to say hello?
-        I'd love to hear from you.
+        Have a project in mind or just want to say hello? I'd love to hear from
+        you.
       </p>
     </div>
 
     <div class="contact-list">
-
-      <a href={`mailto:${contact.email}`} class="contact-item anim" style="animation-delay: 0.3s">
-        ...
+      <a
+        href={`mailto:${contact.email}`}
+        class="contact-item anim"
+        style="animation-delay: 0.3s"
+      >
+        <div class="contact-meta">
+          <span class="contact-type">Email</span>
+          <span class="contact-value">{contact.email}</span>
+        </div>
+        <span class="arrow">↗</span>
       </a>
 
-      <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="contact-item anim" style="animation-delay: 0.4s">
-        ...
+      <a
+        href={`tel:${contact.phone.replace(/\s/g, "")}`}
+        class="contact-item anim"
+        style="animation-delay: 0.4s"
+      >
+        <div class="contact-meta">
+          <span class="contact-type">Phone</span>
+          <span class="contact-value">{contact.phone}</span>
+        </div>
+        <span class="arrow">↗</span>
       </a>
 
-      <a href={contact.linkedin} target="_blank" class="contact-item anim" style="animation-delay: 0.5s">
-        ...
+      <a
+        href={contact.linkedin}
+        target="_blank"
+        class="contact-item anim"
+        style="animation-delay: 0.5s"
+      >
+        <div class="contact-meta">
+          <span class="contact-type">LinkedIn</span>
+          <span class="contact-value">View Profile</span>
+        </div>
+        <span class="arrow">↗</span>
       </a>
-
     </div>
-
   </div>
 </section>
 
@@ -81,7 +102,6 @@ const contact = {
     display: flex;
     align-items: center;
     justify-content: center;
-    
   }
 
   .contact-inner {

@@ -1,0 +1,201 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/skills", label: "Skills" },
+  { href: "/contact", label: "My Information" }
+];
+---
+
+<header class="navbar">
+  <div class="container">
+    <a href="/" class="logo">Portfolio</a>
+
+    <nav class="nav-links" id="nav-links" role="navigation" aria-label="Main navigation">
+      {links.map(link => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  :root {
+    --bg: #f7f5f2;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --hint: #999999;
+    --rule: #dddddd;
+  }
+
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--rule);
+    padding: 0 48px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 64px;
+  }
+
+  /* ── Logo ── */
+  .logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Desktop nav links ── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-links a {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hint);
+    padding: 0.4rem 0.875rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a[aria-current="page"] {
+    color: var(--ink);
+  }
+
+  /* ── Hamburger ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    border: 0.5px solid var(--rule);
+    border-radius: 6px;
+    background: none;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 1px;
+    background: var(--ink);
+    border-radius: 1px;
+    transform-origin: center;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .navbar {
+      padding: 0 24px;
+    }
+
+    .container {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 16px 0;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding: 12px 0 4px;
+      border-top: 0.5px solid var(--rule);
+      margin-top: 12px;
+      gap: 0;
+    }
+
+    .nav-links a {
+      padding: 10px 0;
+      width: 100%;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-links.mobile-open {
+      display: flex;
+      animation: slideDown 0.2s ease forwards;
+    }
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+
+  hamburger?.addEventListener("click", () => {
+    const isOpen = navLinks?.classList.toggle("mobile-open");
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("mobile-open");
+      hamburger?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Highlight active page link
+  const currentPath = window.location.pathname;
+  navLinks?.querySelectorAll("a").forEach(link => {
+    if (link.getAttribute("href") === currentPath) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
+</script>

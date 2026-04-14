@@ -1,0 +1,220 @@
+---
+const contact = {
+  email: "immarkcastrojr0905@gmail.com",
+  phone: "+63 9393692018",
+  linkedin: "https://www.linkedin.com/in/mark-anthony-g-castro-jr-6b084033b/",
+};
+---
+
+<section id="contact">
+  <div class="contact-inner">
+
+    <div class="contact-header anim">
+      <span class="section-label">Contact</span>
+      <h2 class="anim anim-delay-1">Let's work <em>together.</em></h2>
+      <p class="subtitle anim anim-delay-2">
+        Have a project in mind or just want to say hello?
+        I'd love to hear from you.
+      </p>
+    </div>
+
+    <div class="contact-list">
+
+      <a href={`mailto:${contact.email}`} class="contact-item anim" style="animation-delay: 0.3s">
+        ...
+      </a>
+
+      <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="contact-item anim" style="animation-delay: 0.4s">
+        ...
+      </a>
+
+      <a href={contact.linkedin} target="_blank" class="contact-item anim" style="animation-delay: 0.5s">
+        ...
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root {
+    --bg: #f7f5f2;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --hint: #999999;
+    --rule: #dddddd;
+  }
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .anim {
+    opacity: 0;
+    animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .anim-delay-1 {
+    animation-delay: 0.1s;
+  }
+  .anim-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim {
+      opacity: 1;
+      animation: none;
+    }
+  }
+
+  #contact {
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  .contact-inner {
+    width: 100%;
+    max-width: 640px;
+  }
+
+  /* ── Header ── */
+  .contact-header {
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hint);
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(36px, 7vw, 60px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 400px;
+  }
+
+  /* ── Contact list ── */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 0.5px solid var(--rule);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    border-bottom: 0.5px solid var(--rule);
+    text-decoration: none;
+    transition: padding-left 0.2s ease;
+  }
+
+  .contact-item:hover {
+    padding-left: 8px;
+  }
+
+  .contact-item:hover .contact-value {
+    color: var(--ink);
+  }
+
+  .contact-item:hover .arrow {
+    color: var(--ink);
+  }
+
+  .contact-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-type {
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hint);
+  }
+
+  .contact-value {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+  }
+
+  .arrow {
+    font-size: 18px;
+    color: var(--rule);
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .contact-item:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+
+  /* ── Footer note ── */
+  .contact-footer {
+    margin-top: 40px;
+  }
+
+  .footer-note {
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--hint);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    #contact {
+      padding: 64px 24px;
+      align-items: flex-start;
+    }
+
+    .contact-item {
+      padding: 20px 0;
+    }
+
+    .contact-value {
+      font-size: 16px;
+    }
+  }
+</style>
